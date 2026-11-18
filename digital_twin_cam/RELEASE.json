@@ -1,0 +1,12 @@
+{
+  "release": "v2-deploy-20261023",
+  "package_version": "0.1.0",
+  "created_at_utc": "2026-10-23T07:11:38.726257+00:00",
+  "status": "demo",
+  "default_handover_profile": "config/pi-15fps.example.yaml",
+  "experimental_profile": "config/pi-30fps.example.yaml",
+  "hardware_target": "Pi 3B / Linux V4L2 M2M H264; verify on receiving device",
+  "python_requires": ">=3.11",
+  "media_topology": "publisher Pi -> browser; server auth/signaling only",
+  "source_file_count": 37
+}

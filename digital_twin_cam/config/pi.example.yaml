@@ -1,0 +1,30 @@
+# Chép thành config/local.yaml rồi sửa đường dẫn thiết bị và file khóa trên Pi.
+# Đây là ví dụ; không tự kết nối, không tự cài service khi mở project.
+signaling:
+  url: ws://10.147.19.155/signaling
+  kit_code: "123"
+  publish_key_file: ~/.local/share/digital_twin_cam/publish.key
+  max_peer_tracks: 4
+  negotiation_timeout: 20
+  retry_seconds: 3
+capture:
+  ffmpeg: ffmpeg
+  startup_timeout: 15
+  stale_seconds: 5
+  retry_seconds: 3
+# Cấu hình chung cho cả hai camera; bitrate tính riêng cho mỗi camera.
+video:
+  width: 640
+  height: 480
+  fps: 15
+  bitrate: 1000000
+  gop: 15
+cameras:
+  - id: camera1
+    index: 0                   # cameraIndex trong signaling, không phải /dev/video index
+    device: /dev/video0        # nên đổi thành /dev/v4l/by-path/...-video-index0
+    enabled: true
+  - id: camera2
+    index: 1
+    device: /dev/video2
+    enabled: false             # nghiệm thu một camera trước, sau đó bật camera thứ hai

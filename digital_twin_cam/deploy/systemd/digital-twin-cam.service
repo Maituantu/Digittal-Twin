@@ -1,0 +1,28 @@
+# TEMPLATE: edit User, Group and WorkingDirectory before installing.
+# Intentionally NOT enabled automatically by setup.sh.
+[Unit]
+Description=USB camera hardware H264 WebRTC publisher
+Wants=network-online.target zerotier-one.service
+After=network-online.target zerotier-one.service
+StartLimitIntervalSec=120
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=thang
+Group=thang
+SupplementaryGroups=video
+WorkingDirectory=/home/thang/digital_twin_cam
+ExecStart=/home/thang/digital_twin_cam/.venv/bin/dt-cam --config /home/thang/digital_twin_cam/config/local.yaml publish
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
